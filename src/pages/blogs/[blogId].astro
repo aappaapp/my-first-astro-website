@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const blogs = await Astro.glob<{ title: string }>("../../data/blogs/*.md");
+
+    return blogs.map((blog) => {
+        return [
+            {
+                params: { blogId: blog.file.split("/").pop()?.split(".").shift() },
+                props: blog,
+            },
+        ];
+    });
+}
+
+const { frontmatter, Content } = Astro.props;
+const { title } = frontmatter;
+---
+
+<Layout title={title}>
+    <Content />
+</Layout>
