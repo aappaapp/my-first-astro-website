@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/BaseLayout.astro";
+import path from "node:path";
+
+const blogs = await Astro.glob("../../data/blogs/*.md");
+---
+
+<Layout title="Blogs">
+    <h1>My blogs</h1>
+    <section>
+        {
+            blogs.map((blog) => {
+                return (
+                    <div class="blog" id={path.basename(blog.file, path.extname(blog.file))}>
+                        {blog.frontmatter.title}
+                    </div>
+                );
+            })
+        }
+    </section>
+</Layout>
+
+<script>
+    const blogs: NodeListOf<HTMLElement> = document.querySelectorAll(".blog");
+
+    blogs.forEach((blog) => {
+        blog.addEventListener("click", () => {
+            location.href = `./${blog.id}/`;
+        });
+    });
+</script>

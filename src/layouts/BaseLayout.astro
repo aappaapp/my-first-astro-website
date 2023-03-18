@@ -3,6 +3,8 @@ export interface Props {
     title: string;
 }
 
+import Nav from "../components/Nav.astro";
+
 const { title } = Astro.props;
 ---
 
@@ -16,10 +18,10 @@ const { title } = Astro.props;
         <title>{title}</title>
     </head>
     <body>
-        <p>THIS IS A HEADER</p>
-        <slot />
+        <Nav />
+        <slot style={{ padding: "10px" }} />
         <p>
-            THIS IS A FOOTER <br /> Made with {Astro.generator}
+            Made with {Astro.generator}
         </p>
     </body>
 </html>
@@ -32,13 +34,18 @@ const { title } = Astro.props;
     }
 
     body {
-        background-color: #000033;
+        background-color: black;
         color: white;
         margin: 0;
-        padding: 10px;
+        // padding: 10px;
     }
 
     h1 {
         margin: 0;
+    }
+
+    a {
+        color: blue;
+        text-decoration: none;
     }
 </style>
