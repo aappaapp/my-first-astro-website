@@ -6,18 +6,20 @@ const blogs = await Astro.glob("../../data/blogs/*.md");
 ---
 
 <Layout title="Blogs">
-    <h1>My blogs</h1>
-    <section>
-        {
-            blogs.map((blog) => {
-                return (
-                    <div class="blog" id={path.basename(blog.file, path.extname(blog.file))}>
-                        {blog.frontmatter.title}
-                    </div>
-                );
-            })
-        }
-    </section>
+    <main>
+        <h1>My blogs</h1>
+        <section>
+            {
+                blogs.map((blog) => {
+                    return (
+                        <div class="blog" id={path.basename(blog.file, path.extname(blog.file))}>
+                            {blog.frontmatter.title}
+                        </div>
+                    );
+                })
+            }
+        </section>
+    </main>
 </Layout>
 
 <script>
